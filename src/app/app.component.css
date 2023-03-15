@@ -1,0 +1,54 @@
+.container_background{
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(background.12a59d8f01347080.svg);
+    background-color: #141923;
+    background-position: bottom;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-text{
+    outline: none;
+    background: rgba(217,217,217,.2);
+    height: 45px;
+    width: 300px;
+    padding-left: 10px;
+    border-radius: 10px;
+    background: linear-gradient(#141923,#141923) padding-box,linear-gradient(to right,#7b72cc,#dc0078,#3871d6) border-box;
+    border: 2px solid transparent;
+}
+.valid-button{
+    background: linear-gradient(#141923,#141923) padding-box,linear-gradient(to right,#7b72cc,#dc0078,#3871d6) border-box;
+    border-radius: 50em;
+    border: 2px solid transparent;
+    color: #fff;
+    min-width: 100px;
+}
+
+.invalid-button{
+    background: #3a3a3a;
+    color: #9e9e9e;
+    border: 1.6px solid #b0b0b0;
+    border-radius: 50em;
+}
+
+.image{
+    width: 100px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.selected-image{
+    width: 150px;
+}
+
+
+.filter-image{
+    filter: grayscale(100%);
+}

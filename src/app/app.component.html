@@ -1,0 +1,101 @@
+
+
+<!-- <div class="h-100 d-flex align-items-center justify-content-center vh-100"> -->
+<div id="step1" class="bs-stepper">
+  <div class="bs-stepper-header">
+    <div class="step" data-target="#step-1">
+      <button class="step-trigger">
+      </button>
+    </div>
+    <div class="step" data-target="#step-2">
+      <button class="step-trigger">
+      </button>
+    </div>
+    <div class="step" data-target="#step-3">
+      <button class="step-trigger">
+      </button>
+    </div>
+    <div class="step" data-target="#step-4-1">
+      <button class="step-trigger">
+      </button>
+    </div>
+    <div class="step" data-target="#step-4-2">
+      <button class="step-trigger">
+      </button>
+    </div>
+  </div>
+
+    <div class="bs-stepper-content container_background px-2">
+    <div id="step-1" class="content">
+      <h1 class="text-white" style="font-size: 36px;">
+        What is your Name?
+      </h1>
+      <form class="d-flex flex-column align-items-center" style="gap:2rem; width: fit-content;">
+        <input type="text" #name placeholder="-Type Here-" class="text-white input-text" style="font-size: 20px;" (keyup)="setName(name.value)">
+        <button (click)="next()" class="px-6 py-2" [ngClass]="playerName.length == 0 ? 'invalid-button' : 'valid-button'" style="width: 156px;" [disabled]="playerName.length == 0">Next</button>
+      </form>
+    </div>
+
+    <div id="step-2" class="content">
+      <div class="d-flex flex-column justify-content-center my-2 align-items-center">
+        <h1 class="text-white" style="font-weight:700px; font-size: 40px;">Hello {{playerName}}</h1>
+        <p class="text-white" style="font-size:20px">Choose your avatar</p>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center" style="gap: 2rem">
+        <div class="d-flex flex-wrap my-2 justify-content-center align-items-center" style="gap: 1rem">
+          <div *ngFor="let avatar of avatarList; let i = index">
+            <img [src]="avatar" [ngClass]="selectedAvatar == '' ? 'image' : selectedAvatar == avatar ? 'selected-image' : 'filter-image'" style="width:150px;" (click)="setAvatar(avatar)">
+          </div>
+        </div>
+        <button (click)="next()" class="py-2 px-6" [ngClass]="selectedAvatar.length == 0 ? 'invalid-button' : 'valid-button'" style="width:156px" [disabled]="selectedAvatar.length == 0">Next</button>
+      </div>
+    </div>
+
+    <div id="step-3" class="content">
+      <div class="align-items-center d-flex flex-column" style="gap:2.25rem;">
+        <div class="align-items-center d-flex" style="font-size: 30px; gap:1rem">
+          <img [src]="selectedAvatar" style="width:100px;">
+          <p class="text-white"> {{playerName}} </p>
+        </div>
+        <div class="d-flex flex-column" style="gap:2rem">
+          <button class="py-3 px-9 button valid-button" style="width:312px" (click)="next()">Join a Room</button>
+          <button class="py-3 px-9 button valid-button" style="width:312px" (click)="stepperTo(5)">Create a Room</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="step-4-1" class="content">
+      <div class="align-items-center d-flex flex-column" style="gap:1.5rem">
+        <div class="align-items-center d-flex" style="gap:1rem">
+          <img [src]="selectedAvatar" class="image">
+          <p class="text-white" style="font-size:30px">{{playerName}}</p>
+        </div>
+        <div class="d-flex flex-column " style="gap:1rem;position: relative;">
+          <p class="text-white" style="font-weight:500; font-size:28px" >Type room code below</p>
+          <input type="text" placeholder="-Type Here-" class="text-white input-text" style="font-size: 20px;" [(ngModel)]="roomCode" (keypress)="setRoomCode($event)">
+        </div>
+        <button class="px-6 py-2 mt-2" [ngClass]="roomCode.length == 6 ? 'valid-button' : 'invalid-button'" style="width: 156px;" [disabled]="!(roomCode.length == 6)" (click)="error()">Next</button>
+      </div>
+    </div>
+
+    <div id="step-4-2" class="content">
+      <div class="align-items-center d-flex flex-column" style="gap:1.5rem">
+        <div class="align-items-center d-flex" style="gap:1rem">
+          <img [src]="selectedAvatar" class="image">
+          <p class="text-white" style="font-size:30px">{{playerName}}</p>
+        </div>
+        <div class="d-flex flex-column " style="gap:1rem;">
+          <input type="text" placeholder="-Room Name-" class="text-white input-text" style="font-size: 20px;" [(ngModel)]="roomName">
+          <input type="text" placeholder="-Number of players-" class="text-white input-text" style="font-size: 20px;" [(ngModel)]="numberOfPlayers" (keypress)="setNumberOfPlayers($event)">
+        </div>
+        <button class="px-6 py-2 mt-2" [ngClass]="(roomName.length > 0 && numberOfPlayers.length > 0) ? 'valid-button' : 'invalid-button' " style="width: 156px;" [disabled]="(roomName.length == 0 && numberOfPlayers.length == 0)" (click)="error()">Create</button>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+<router-outlet></router-outlet>
+ 
